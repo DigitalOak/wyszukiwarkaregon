@@ -262,6 +262,53 @@ try {
 
 ```
 
+## Appendix
+
+### Curl
+
+curl --header "Content-Type: application/soap+xml; charset=utf-8" --data @soapReq https://wyszukiwarkaregontest.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc -v
+
+Body of soapReq file:
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope 
+    xmlns:env="http://www.w3.org/2003/05/soap-envelope" 
+    xmlns:ns1="http://CIS/BIR/PUBL/2014/07" 
+    xmlns:ns2="http://www.w3.org/2005/08/addressing">
+    <env:Header>
+        <ns2:To>https://wyszukiwarkaregontest.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc</ns2:To>
+        <ns2:Action>http://CIS/BIR/PUBL/2014/07/IUslugaBIRzewnPubl/Zaloguj</ns2:Action>
+    </env:Header>
+    <env:Body>
+        <ns1:Zaloguj>
+            <ns1:pKluczUzytkownika>abcde12345abcde12345</ns1:pKluczUzytkownika>
+        </ns1:Zaloguj>
+    </env:Body>
+</env:Envelope>
+
+Response:
+--uuid:b4f12732-43ef-4722-b1fe-dc75cbde0262+id=14980
+Content-ID: <http://tempuri.org/0>
+Content-Transfer-Encoding: 8bit
+Content-Type: application/xop+xml;charset=utf-8;type="application/soap+xml"
+<s:Envelope 
+    xmlns:s="http://www.w3.org/2003/05/soap-envelope" 
+    xmlns:a="http://www.w3.org/2005/08/addressing">
+    <s:Header>
+        <a:Action s:mustUnderstand="1">http://CIS/BIR/PUBL/2014/07/IUslugaBIRzewnPubl/ZalogujResponse</a:Action>
+    </s:Header>
+    <s:Body>
+        <ZalogujResponse 
+            xmlns="http://CIS/BIR/PUBL/2014/07">
+            <ZalogujResult>zkuhtx73vb6mdv6tmf6n</ZalogujResult>
+        </ZalogujResponse>
+    </s:Body>
+</s:Envelope>
+--uuid:b4f12732-43ef-4722-b1fe-dc75cbde0262+id=14980--
+
+### SoapUI
+
+Create SOAP Project, add initial WSDL "https://wyszukiwarkaregontest.stat.gov.pl/wsBIR/wsdl/UslugaBIRzewnPubl.xsd" -> On Zaloguj/"Request 1" paste SOAP request from curl section and run. 
+
 ## License
 
 MIT license. See the [LICENSE](LICENSE) file for more details.

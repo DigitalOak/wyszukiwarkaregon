@@ -44,6 +44,7 @@ Configure your access credentials when creating a client:
 use WyszukiwarkaRegon\Client;
 use WyszukiwarkaRegon\Exception\RegonException;
 use WyszukiwarkaRegon\Exception\SearchException;
+use WyszukiwarkaRegon\Enum\GetValue;
 
 $client = new Client([
    'key' => 'aaaabbbbccccdddd' //Optional api key - required for full reports,

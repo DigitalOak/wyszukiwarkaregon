@@ -279,10 +279,15 @@ class Service
     private function xml2array($xml)
     {
         $arr = array();
+        $counter = 1;
         foreach ($xml as $element) {
             /** @var \SimpleXmlElement $element */
             $tag = $element->getName();
             $e = get_object_vars($element);
+            if (array_key_exists($tag, $arr)) {
+                $counter++;
+                $tag .= "_" . $counter;
+            }            
             $arr[$tag] = trim($element);
             if (!empty($e)) {
                 $arr[$tag] = $element instanceof \SimpleXMLElement ? $this->xml2array($element) : $e;

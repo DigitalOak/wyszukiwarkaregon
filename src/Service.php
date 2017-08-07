@@ -287,7 +287,7 @@ class Service
             if (array_key_exists($tag, $arr)) {
                 $counter++;
                 $tag .= "_" . $counter;
-            }            
+            }
             $arr[$tag] = trim($element);
             if (!empty($e)) {
                 $arr[$tag] = $element instanceof \SimpleXMLElement ? $this->xml2array($element) : $e;
